@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Giỏ hàng - Hào Watches</title><script src="https://cdn.tailwindcss.com"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><link rel="stylesheet" href="style.css"></head>
+<body>
+<nav class="nav-luxury"><div class="container mx-auto px-4 py-2 flex justify-between"><a href="index.html" class="text-white font-bold">Hào Watches</a><a href="shop.html" class="text-gold">← Tiếp tục mua</a></div></nav>
+<div class="container mx-auto px-4 py-10 max-w-4xl"><h1 class="text-3xl font-serif shimmer-text mb-6">🛒 Giỏ hàng của bạn</h1><div id="cartItems" class="bg-white rounded-2xl shadow p-4"></div><div id="cartTotal" class="text-right text-2xl font-bold mt-6"></div><a href="checkout.html" class="btn-gold block text-center py-3 rounded-xl mt-6">Tiến hành thanh toán</a></div>
+<script src="script.js"></script>
+<script>
+    function renderCart() {
+        const cart = getCart();
+        const container = document.getElementById('cartItems');
+        if(!cart.length) { container.innerHTML = '<p class="text-center py-10">Giỏ hàng trống.</p>'; document.getElementById('cartTotal').innerHTML=''; return; }
+        let total = 0;
+        let html = `<div class="overflow-x-auto"><table class="w-full"><thead><tr class="border-b"><th>Sản phẩm</th><th>Giá</th><th>Số lượng</th><th>Thành tiền</th><th></th></tr></thead><tbody>`;
+        cart.forEach((item, idx) => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            html += `<tr class="border-b"><td class="py-4"><img src="${item.image}" class="w-16 h-16 object-cover inline mr-3 rounded">${item.name}</td><td>${item.price.toLocaleString()}₫</td><td><button class="qty-btn bg-gray-200 px-2 py-1 rounded" data-idx="${idx}" data-delta="-1">-</button> <span class="mx-2">${item.quantity}</span> <button class="qty-btn bg-gray-200 px-2 py-1 rounded" data-idx="${idx}" data-delta="1">+</button></td><td>${itemTotal.toLocaleString()}₫</td><td><button class="remove-btn text-red-500" data-idx="${idx}"><i class="fas fa-trash"></i></button></td></tr>`;
+        });
+        html += `</tbody></table></div>`;
+        container.innerHTML = html;
+        document.getElementById('cartTotal').innerHTML = `Tổng cộng: <span class="shimmer-text">${total.toLocaleString()}₫</span>`;
+        document.querySelectorAll('.qty-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                let cartNow = getCart();
+                const idx = parseInt(btn.dataset.idx);
+                const delta = parseInt(btn.dataset.delta);
+                if(cartNow[idx]) {
+                    cartNow[idx].quantity += delta;
+                    if(cartNow[idx].quantity <= 0) cartNow.splice(idx,1);
+                    saveCart(cartNow);
+                    renderCart();
+                    updateCartCount();
+                }
+            });
+        });
+        document.querySelectorAll('.remove-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                let cartNow = getCart();
+                cartNow.splice(parseInt(btn.dataset.idx),1);
+                saveCart(cartNow);
+                renderCart();
+                updateCartCount();
+            });
+        });
+    }
+    document.addEventListener('DOMContentLoaded', () => { renderCart(); updateCartCount(); });
+</script>
+</body>
+</html>

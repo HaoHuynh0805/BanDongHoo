@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Cửa hàng - Hào Watches</title><script src="https://cdn.tailwindcss.com"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><link rel="stylesheet" href="style.css"></head>
+<body>
+<nav class="nav-luxury"><div class="container mx-auto px-4 flex justify-between items-center"><a href="index.html" class="text-white font-bold text-xl"><i class="fas fa-crown text-gold"></i> HÀO WATCHES</a><div class="flex items-center gap-4"><a href="cart.html" class="relative"><i class="fas fa-shopping-bag text-white text-xl"></i><span id="cartCount" class="absolute -top-2 -right-3 bg-gold text-black rounded-full px-1 text-xs">0</span></a></div></div></nav>
+<div class="container mx-auto px-4 pt-24 pb-16 flex flex-col lg:flex-row gap-8"><aside class="lg:w-80 filter-card"><h3 class="text-2xl font-serif shimmer-text mb-4">🔍 Bộ lọc</h3><input type="text" id="searchInput" placeholder="Tìm kiếm..." class="filter-input"><select id="brandFilter" class="filter-input"><option value="all">Tất cả thương hiệu</option><option>Hào</option><option>Rolex</option><option>Omega</option><option>Patek</option><option>Audemars</option><option>Cartier</option><option>IWC</option><option>Richard Mille</option></select><div class="price-range"><label class="block font-medium mb-1">Khoảng giá (triệu VNĐ)</label><input type="range" id="priceRange" min="0" max="2000" step="10" value="2000" class="w-full"><div class="flex justify-between text-sm"><span>0 triệu</span><span id="priceRangeValue">2000+ triệu</span></div></div><div class="flex gap-2 mt-2"><input type="number" id="minPrice" placeholder="Từ" class="filter-input w-1/2"><input type="number" id="maxPrice" placeholder="Đến" class="filter-input w-1/2"></div><button id="resetFilter" class="btn-outline w-full mt-3">Đặt lại</button></aside><main class="flex-1"><div id="productGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7"></div></main></div>
+<div id="quickViewModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><div id="quickViewBody"></div></div></div>
+<script src="script.js"></script>
+<script>
+    function renderProducts(products) {
+        const grid = document.getElementById('productGrid');
+        if(!products.length) { grid.innerHTML = '<p class="text-center col-span-full">Không tìm thấy</p>'; return; }
+        grid.innerHTML = products.map(p => `<div class="product-card relative">${p.badge === 'new' ? '<div class="badge-new">MỚI</div>' : ''}${p.badge === 'sale' ? '<div class="badge-sale">GIẢM GIÁ</div>' : ''}<img src="${p.image}" class="product-img"><div class="p-4"><h3 class="font-serif font-bold text-xl">${p.name}</h3><div class="rating">${Array(5).fill().map((_,i)=>`<i class="fa${i<p.rating?'s':'r'} fa-star"></i>`).join('')}</div><div class="mt-1">${p.originalPrice ? `<span class="old-price">${p.originalPrice.toLocaleString()}₫</span>` : ''}<span class="price">${p.price.toLocaleString()}₫</span></div><div class="stock">Tồn: <span>${p.stock}</span></div><div class="flex gap-2 mt-3"><button onclick="addToCart(getProductById('${p.id}'),1)" class="btn-gold py-1 px-3 text-sm rounded-full flex-1">Mua ngay</button><button onclick="quickView('${p.id}')" class="btn-outline py-1 px-3 text-sm">Xem nhanh</button></div><a href="product.html?id=${p.id}" class="block text-center text-gold underline text-sm mt-2">Chi tiết</a></div></div>`).join('');
+    }
+    window.quickView = function(id) {
+        const p = getProductById(id);
+        const modal = document.getElementById('quickViewModal');
+        const body = document.getElementById('quickViewBody');
+        body.innerHTML = `<div class="grid md:grid-cols-2 gap-6"><img src="${p.image}" class="rounded-2xl"><div><h2 class="text-2xl font-bold">${p.name}</h2><div class="rating mt-2">${Array(5).fill().map((_,i)=>`<i class="fa${i<p.rating?'s':'r'} fa-star"></i>`).join('')}</div><div><span class="price text-2xl">${p.price.toLocaleString()}₫</span>${p.originalPrice ? `<span class="old-price ml-2">${p.originalPrice.toLocaleString()}₫</span>` : ''}</div><p class="mt-3">${p.description}</p><p class="mt-2 text-sm">Tồn kho: ${p.stock}</p><button onclick="addToCart(getProductById('${p.id}'),1); modal.classList.remove('active')" class="btn-gold mt-4 w-full">Thêm giỏ</button></div></div>`;
+        modal.classList.add('active');
+    };
+    document.querySelectorAll('.close-modal').forEach(btn => btn.onclick = () => document.getElementById('quickViewModal').classList.remove('active'));
+    window.onclick = (e) => { if(e.target === document.getElementById('quickViewModal')) document.getElementById('quickViewModal').classList.remove('active'); };
+    function filterAndSort() {
+        let filtered = getProducts();
+        const search = document.getElementById('searchInput').value.toLowerCase();
+        const brand = document.getElementById('brandFilter').value;
+        let min = parseFloat(document.getElementById('minPrice').value) || 0;
+        let max = parseFloat(document.getElementById('maxPrice').value) || Infinity;
+        const rangeMax = parseFloat(document.getElementById('priceRange').value);
+        if(!isNaN(rangeMax) && rangeMax < 2000) max = rangeMax * 1e6;
+        filtered = filtered.filter(p => p.name.toLowerCase().includes(search) && (brand==='all' || p.brand===brand) && p.price >= min*1e6 && p.price <= max);
+        renderProducts(filtered);
+    }
+    document.getElementById('searchInput').addEventListener('input', filterAndSort);
+    document.getElementById('brandFilter').addEventListener('change', filterAndSort);
+    document.getElementById('minPrice').addEventListener('input', filterAndSort);
+    document.getElementById('maxPrice').addEventListener('input', filterAndSort);
+    document.getElementById('priceRange').addEventListener('input', function() {
+        document.getElementById('priceRangeValue').innerText = this.value === '2000' ? '2000+ triệu' : this.value + ' triệu';
+        filterAndSort();
+    });
+    document.getElementById('resetFilter').addEventListener('click', () => {
+        document.getElementById('searchInput').value=''; document.getElementById('brandFilter').value='all';
+        document.getElementById('minPrice').value=''; document.getElementById('maxPrice').value='';
+        document.getElementById('priceRange').value='2000'; document.getElementById('priceRangeValue').innerText='2000+ triệu';
+        filterAndSort();
+    });
+    document.addEventListener('DOMContentLoaded', () => { filterAndSort(); updateCartCount(); });
+</script>
+</body>
+</html>

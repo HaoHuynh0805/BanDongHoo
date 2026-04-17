@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Admin - Hào Watches</title><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.jsdelivr.net/npm/chart.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="bg-black text-white p-4"><div class="container mx-auto flex justify-between items-center"><h1 class="text-2xl shimmer-text">👑 Admin Hào Watches</h1><a href="index.html" class="btn-gold text-sm">Về web</a></div></div>
+<div class="container mx-auto p-6 grid md:grid-cols-2 gap-8">
+    <div class="bg-white p-6 rounded-2xl shadow"><h2 class="text-xl font-serif font-bold mb-4">➕ Thêm sản phẩm mới</h2><input id="prodName" placeholder="Tên sản phẩm" class="filter-input mb-2"><select id="prodBrand" class="filter-input mb-2"><option>Hào</option><option>Rolex</option><option>Omega</option><option>Patek</option><option>Audemars</option><option>Cartier</option><option>IWC</option><option>Richard Mille</option></select><input id="prodPrice" type="number" placeholder="Giá (VNĐ)" class="filter-input mb-2"><input id="prodStock" type="number" placeholder="Tồn kho" class="filter-input mb-2"><input id="prodImage" placeholder="URL ảnh (để trống tự tạo)" class="filter-input mb-2"><textarea id="prodDesc" placeholder="Mô tả" rows="2" class="filter-input mb-2"></textarea><button id="addProductBtn" class="btn-gold w-full py-2">Thêm sản phẩm</button><hr class="my-6"><h3 class="font-bold text-lg mb-3">📦 Danh sách sản phẩm</h3><div id="productListAdmin" class="max-h-96 overflow-auto"></div></div>
+    <div class="bg-white p-6 rounded-2xl shadow"><h2 class="text-xl font-serif font-bold mb-4">📋 Đơn hàng & Thống kê</h2><div id="ordersListAdmin" class="max-h-60 overflow-auto"></div><canvas id="revenueChart" width="300" height="150" class="mt-6"></canvas><div class="mt-4 p-4 bg-amber-50 rounded-xl"><p class="font-bold">Tổng doanh thu: <span id="totalRevenue" class="shimmer-text text-xl">0</span>₫</p><p class="text-sm text-gray-500 mt-1">Số đơn hàng: <span id="orderCount">0</span></p></div></div>
+</div>
+<script src="script.js"></script>
+<script>
+    let revenueChart;
+    function renderProductAdmin() {
+        const prods = getProducts();
+        let html = '<table class="admin-table"><thead><tr><th>Tên</th><th>Giá</th><th>Tồn kho</th><th>Xóa</th></tr></thead><tbody>';
+        prods.forEach((p,idx) => { html += `<tr><td>${p.name}</td><td>${p.price.toLocaleString()}₫</td><td>${p.stock}</td><td><button class="delProd text-red-500" data-idx="${idx}"><i class="fas fa-trash"></i></button></td></tr>`; });
+        html += '</tbody></table>';
+        document.getElementById('productListAdmin').innerHTML = html;
+        document.querySelectorAll('.delProd').forEach(btn => {
+            btn.addEventListener('click', () => { let prods2 = getProducts(); prods2.splice(parseInt(btn.dataset.idx),1); saveProducts(prods2); renderProductAdmin(); showToast('Đã xóa sản phẩm'); });
+        });
+    }
+    function renderOrdersAdmin() {
+        const orders = getOrders();
+        let totalRev = 0;
+        let html = '<table class="admin-table"><thead><tr><th>Mã đơn</th><th>Khách hàng</th><th>Tổng tiền</th><th>Trạng thái</th></tr></thead><tbody>';
+        orders.forEach(o => { totalRev += o.total; html += `<tr><td>${o.id}</td><td>${o.customer?.fullname || 'Khách'}</td><td>${o.total.toLocaleString()}₫</td><td><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">${o.status}</span></td></tr>`; });
+        html += '</tbody></table>';
+        document.getElementById('ordersListAdmin').innerHTML = html;
+        document.getElementById('totalRevenue').innerText = totalRev.toLocaleString();
+        document.getElementById('orderCount').innerText = orders.length;
+        if(revenueChart) revenueChart.destroy();
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        revenueChart = new Chart(ctx, { type: 'bar', data: { labels: orders.slice(0,7).map(o=>o.id), datasets: [{ label: 'Doanh thu (VNĐ)', data: orders.slice(0,7).map(o=>o.total), backgroundColor: '#C5A059' }] }, options: { responsive: true, maintainAspectRatio: true } });
+    }
+    document.getElementById('addProductBtn').addEventListener('click', () => {
+        const name = document.getElementById('prodName').value.trim();
+        const brand = document.getElementById('prodBrand').value;
+        const price = parseFloat(document.getElementById('prodPrice').value);
+        const stock = parseInt(document.getElementById('prodStock').value) || 10;
+        let image = document.getElementById('prodImage').value.trim();
+        const desc = document.getElementById('prodDesc').value.trim();
+        if(!name || isNaN(price) || price<=0) { alert('Vui lòng nhập đầy đủ'); return; }
+        if(!image) image = `https://placehold.co/600x400/1A1A1A/C5A059?text=⌚+${encodeURIComponent(name)}&font=playfair`;
+        const products = getProducts();
+        products.push({ id: 'p'+Date.now(), name, brand, price, image, description: desc || 'Sản phẩm mới', badge: null, stock, rating: 5 });
+        saveProducts(products);
+        renderProductAdmin();
+        showToast(`Đã thêm ${name}`);
+        document.getElementById('prodName').value = ''; document.getElementById('prodPrice').value = ''; document.getElementById('prodStock').value = ''; document.getElementById('prodImage').value = ''; document.getElementById('prodDesc').value = '';
+    });
+    document.addEventListener('DOMContentLoaded', () => { renderProductAdmin(); renderOrdersAdmin(); updateCartCount(); });
+</script>
+</body>
+</html>

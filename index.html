@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hào Watches – Tinh hoa thời gian</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav-luxury">
+    <div class="container mx-auto px-4 flex flex-wrap justify-between items-center">
+        <a href="index.html" class="text-2xl font-bold"><i class="fas fa-crown text-gold mr-1"></i><span class="text-white">HÀO</span><span class="shimmer-text"> WATCHES</span></a>
+        <div class="flex items-center space-x-5">
+            <a href="index.html" class="nav-link">Trang chủ</a>
+            <a href="shop.html" class="nav-link">Cửa hàng</a>
+            <a href="blog.html" class="nav-link">Blog</a>
+            <a href="about.html" class="nav-link">Giới thiệu</a>
+            <a href="contact.html" class="nav-link">Liên hệ</a>
+            <a href="cart.html" class="relative">
+                <i class="fas fa-shopping-bag text-white text-xl"></i>
+                <span id="cartCount" class="absolute -top-2 -right-3 bg-gold text-black text-xs rounded-full px-1.5 py-0.5">0</span>
+            </a>
+            <a href="admin.html" class="btn-gold text-sm px-4 py-2">Admin</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Swiper -->
+<div class="swiper hero-swiper w-full h-[500px] md:h-[600px]">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide relative" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/1920x800/1A1A1A/C5A059?text=⌚+Hao+Emperor+Tourbillon&font=playfair'); background-size: cover; background-position: center;">
+            <div class="flex flex-col justify-center items-center h-full text-white text-center"><h1 class="text-5xl md:text-7xl font-bold shimmer-text">Hào Emperor Tourbillon</h1><p class="text-xl mt-4">Kiệt tác chế tác thủ công</p><a href="shop.html" class="btn-gold mt-6 inline-block">Khám phá ngay</a></div>
+        </div>
+        <div class="swiper-slide relative" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/1920x800/2C3E50/C5A059?text=⌚+Rolex+Daytona+Rainbow&font=playfair'); background-size: cover;">
+            <div class="flex flex-col justify-center items-center h-full text-white"><h1 class="text-5xl md:text-7xl font-bold shimmer-text">Rolex Daytona Rainbow</h1><p class="text-xl mt-4">Sắc màu quyền lực</p><a href="shop.html" class="btn-gold mt-6 inline-block">Xem ngay</a></div>
+        </div>
+        <div class="swiper-slide relative" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/1920x800/34568B/C5A059?text=⌚+Patek+Nautilus&font=playfair'); background-size: cover;">
+            <div class="flex flex-col justify-center items-center h-full text-white"><h1 class="text-5xl md:text-7xl font-bold shimmer-text">Patek Philippe Nautilus</h1><p class="text-xl mt-4">Biểu tượng đẳng cấp</p><a href="shop.html" class="btn-gold mt-6 inline-block">Khám phá</a></div>
+        </div>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+
+<!-- Sản phẩm nổi bật -->
+<div class="container mx-auto px-4 py-20">
+    <div class="text-center mb-12"><h2 class="text-4xl font-serif shimmer-text">✨ Bộ sưu tập thượng lưu</h2><div class="w-24 h-1 bg-gold mx-auto mt-4"></div><p class="text-gray-600 mt-4">Những mẫu đồng hồ được săn đón nhất</p></div>
+    <div id="featuredGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"></div>
+</div>
+
+<!-- Blog Preview -->
+<div class="bg-black text-white py-16">
+    <div class="container mx-auto px-4 text-center"><h2 class="text-3xl font-serif shimmer-text">📰 Tin tức & Sự kiện</h2><p class="mt-2">Cập nhật xu hướng đồng hồ mới nhất</p>
+        <div class="grid md:grid-cols-3 gap-8 mt-10">
+            <div class="bg-white/10 p-6 rounded-2xl text-left"><i class="fas fa-newspaper text-gold text-2xl"></i><h3 class="font-bold text-xl mt-3">Triển lãm Watches & Wonders</h3><p class="text-sm mt-2">Hào Watches tham gia triển lãm lớn nhất châu Á...</p><a href="blog.html" class="text-gold text-sm mt-3 inline-block">Đọc tiếp →</a></div>
+            <div class="bg-white/10 p-6 rounded-2xl text-left"><i class="fas fa-gem text-gold text-2xl"></i><h3 class="font-bold text-xl mt-3">Bộ sưu tập mới 2025</h3><p class="text-sm mt-2">Những mẫu đồng hồ giới hạn vừa ra mắt...</p><a href="blog.html" class="text-gold text-sm mt-3 inline-block">Đọc tiếp →</a></div>
+            <div class="bg-white/10 p-6 rounded-2xl text-left"><i class="fas fa-chart-line text-gold text-2xl"></i><h3 class="font-bold text-xl mt-3">Xu hướng đồng hồ năm nay</h3><p class="text-sm mt-2">Mặt số màu xanh và dây cao su lên ngôi...</p><a href="blog.html" class="text-gold text-sm mt-3 inline-block">Đọc tiếp →</a></div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-black text-white py-10 text-center border-t border-gold/20"><p class="shimmer-text font-bold text-xl">⌚ Hào Watches</p><p class="mt-2">Bảo hành quốc tế 5 năm | Giao hàng miễn phí toàn cầu</p><p class="text-sm mt-4">© 2025 Hào Watches – Đẳng cấp thời gian</p></footer>
+
+<!-- Back to top -->
+<div id="backToTop" class="shadow-lg"><i class="fas fa-arrow-up"></i></div>
+
+<!-- Quick view modal -->
+<div id="quickViewModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><div id="quickViewBody"></div></div></div>
+
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+<script src="script.js"></script>
+<script>
+    new Swiper('.hero-swiper', { loop: true, autoplay: { delay: 5000 }, pagination: { el: '.swiper-pagination', clickable: true } });
+
+    function renderFeatured() {
+        const products = getProducts().slice(0,8);
+        const container = document.getElementById('featuredGrid');
+        container.innerHTML = products.map(p => `
+            <div class="product-card relative">
+                ${p.badge === 'new' ? '<div class="badge-new">MỚI</div>' : ''}
+                ${p.badge === 'sale' ? '<div class="badge-sale">GIẢM GIÁ</div>' : ''}
+                <img src="${p.image}" class="product-img" alt="${p.name}">
+                <div class="p-4">
+                    <h3 class="font-serif text-xl font-bold">${p.name}</h3>
+                    <div class="rating">${Array(5).fill().map((_,i)=>`<i class="fa${i<p.rating?'s':'r'} fa-star"></i>`).join('')}</div>
+                    <div class="mt-1">${p.originalPrice ? `<span class="old-price">${p.originalPrice.toLocaleString()}₫</span>` : ''}<span class="price">${p.price.toLocaleString()}₫</span></div>
+                    <div class="stock">Tồn kho: <span>${p.stock}</span> sản phẩm</div>
+                    <div class="flex gap-2 mt-3">
+                        <button onclick="addToCart(getProductById('${p.id}'),1)" class="btn-gold py-1 px-3 text-sm rounded-full flex-1">Thêm giỏ</button>
+                        <button onclick="quickView('${p.id}')" class="btn-outline py-1 px-3 text-sm">Xem nhanh</button>
+                    </div>
+                    <a href="product.html?id=${p.id}" class="block text-center text-gold underline text-sm mt-2">Chi tiết</a>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    window.quickView = function(id) {
+        const p = getProductById(id);
+        const modal = document.getElementById('quickViewModal');
+        const body = document.getElementById('quickViewBody');
+        body.innerHTML = `<div class="grid md:grid-cols-2 gap-6"><img src="${p.image}" class="rounded-2xl"><div><h2 class="text-2xl font-bold">${p.name}</h2><div class="rating mt-2">${Array(5).fill().map((_,i)=>`<i class="fa${i<p.rating?'s':'r'} fa-star"></i>`).join('')}</div><div class="mt-2"><span class="price text-2xl">${p.price.toLocaleString()}₫</span>${p.originalPrice ? `<span class="old-price ml-2">${p.originalPrice.toLocaleString()}₫</span>` : ''}</div><p class="mt-3 text-gray-600">${p.description}</p><p class="mt-2 text-sm">Tồn kho: <strong>${p.stock}</strong></p><button onclick="addToCart(getProductById('${p.id}'),1); document.getElementById('quickViewModal').classList.remove('active')" class="btn-gold mt-4 w-full">Thêm vào giỏ</button></div></div>`;
+        modal.classList.add('active');
+    };
+    document.querySelector('.close-modal').onclick = () => document.getElementById('quickViewModal').classList.remove('active');
+    window.onclick = (e) => { if(e.target === document.getElementById('quickViewModal')) document.getElementById('quickViewModal').classList.remove('active'); };
+
+    window.addEventListener('scroll', () => {
+        const btn = document.getElementById('backToTop');
+        if(window.scrollY > 300) btn.classList.add('show');
+        else btn.classList.remove('show');
+    });
+    document.getElementById('backToTop').onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    document.addEventListener('DOMContentLoaded', () => { renderFeatured(); updateCartCount(); });
+</script>
+</body>
+</html>
