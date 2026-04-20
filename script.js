@@ -1,32 +1,31 @@
-// script.js - 12 luxury watches with detailed images (text + watch icon)
 const STORAGE = {
     PRODUCTS: 'hao_ultimate_products',
     CART: 'hao_ultimate_cart',
     ORDERS: 'hao_ultimate_orders'
 };
 
-// Hàm tạo ảnh placehold với text tên sản phẩm + icon đồng hồ (dùng emoji)
-function getWatchImage(name, bgColor, textColor) {
-    // Thay thế tên sản phẩm có dấu cách thành %20
-    const encodedName = encodeURIComponent(name);
-    // Thêm biểu tượng đồng hồ ⌚ vào đầu text
-    const displayText = `⌚ ${name}`;
-    return `https://placehold.co/600x400/${bgColor}/${textColor}?text=${encodeURIComponent(displayText)}&font=playfair`;
-}
-
+// 20 sản phẩm đồng hồ cao cấp (đủ các thương hiệu nổi tiếng)
 const products = [
-    { id: "p1", name: "Hào Emperor Tourbillon", brand: "Hào", price: 1250000000, image: getWatchImage("Hào Emperor Tourbillon", "1A1A1A", "C5A059"), description: "Tourbillon bay, vỏ vàng 18K, dây cá sấu thật. Số lượng giới hạn 50 chiếc.", badge: "new", stock: 5, rating: 5, originalPrice: null },
-    { id: "p2", name: "Rolex Submariner Hulk", brand: "Rolex", price: 480000000, image: getWatchImage("Rolex Submariner Hulk", "2C6E2C", "C5A059"), description: "Mặt xanh lục, viền xanh, thép 904L, đẳng cấp.", badge: null, stock: 8, rating: 5, originalPrice: null },
-    { id: "p3", name: "Rolex Daytona Rainbow", brand: "Rolex", price: 950000000, image: getWatchImage("Rolex Daytona Rainbow", "8B5A2B", "C5A059"), description: "Vàng hồng, đá quý cầu vồng trên bezel, siêu phẩm.", badge: "sale", stock: 3, rating: 5, originalPrice: 1200000000 },
-    { id: "p4", name: "Omega Speedmaster Moonwatch", brand: "Omega", price: 210000000, image: getWatchImage("Omega Speedmaster Moonwatch", "1A2B3C", "C5A059"), description: "Di sản mặt trăng, calibre 3861.", badge: null, stock: 12, rating: 4, originalPrice: null },
-    { id: "p5", name: "Patek Philippe Nautilus", brand: "Patek", price: 1800000000, image: getWatchImage("Patek Philippe Nautilus", "34568B", "C5A059"), description: "Biểu tượng thể thao sang trọng.", badge: "new", stock: 2, rating: 5, originalPrice: null },
-    { id: "p6", name: "Audemars Piguet Royal Oak", brand: "Audemars", price: 1450000000, image: getWatchImage("Audemars Piguet Royal Oak", "2E2E2E", "C5A059"), description: "Bát giác huyền thoại, vát cạnh thủ công.", badge: null, stock: 4, rating: 5, originalPrice: null },
-    { id: "p7", name: "Hào Ocean King GMT", brand: "Hào", price: 189000000, image: getWatchImage("Hào Ocean King GMT", "2C3E50", "C5A059"), description: "Chống nước 500m, ceramic bezel, GMT.", badge: "sale", stock: 15, rating: 4, originalPrice: 250000000 },
-    { id: "p8", name: "Omega Seamaster 300M", brand: "Omega", price: 125000000, image: getWatchImage("Omega Seamaster 300M", "0F2F3F", "C5A059"), description: "James Bond edition.", badge: null, stock: 20, rating: 4, originalPrice: null },
-    { id: "p9", name: "Cartier Santos", brand: "Cartier", price: 280000000, image: getWatchImage("Cartier Santos", "8B4513", "C5A059"), description: "Thiết kế vuông, dây thép.", badge: null, stock: 7, rating: 4, originalPrice: null },
-    { id: "p10", name: "IWC Portuguese Chrono", brand: "IWC", price: 320000000, image: getWatchImage("IWC Portuguese Chrono", "1A2B3C", "C5A059"), description: "Bộ máy tự động, mặt số bạc.", badge: null, stock: 6, rating: 4, originalPrice: null },
-    { id: "p11", name: "Hào Skeleton Art", brand: "Hào", price: 276000000, image: getWatchImage("Hào Skeleton Art", "303030", "C5A059"), description: "Lộ máy tinh xảo.", badge: "new", stock: 9, rating: 5, originalPrice: null },
-    { id: "p12", name: "Richard Mille RM 11-03", brand: "Richard Mille", price: 1850000000, image: getWatchImage("Richard Mille RM 11-03", "FFD700", "1A1A1A"), description: "Siêu xe đeo tay.", badge: null, stock: 1, rating: 5, originalPrice: null }
+    { id: "p1", name: "Rolex Submariner Hulk", brand: "Rolex", price: 480000000, image: "https://images.unsplash.com/photo-1585123334904-845d60e6b2f9?w=600&h=400&fit=crop", description: "Mặt xanh lục, viền xanh, thép 904L.", badge: null, stock: 8, rating: 5, originalPrice: null },
+    { id: "p2", name: "Rolex Daytona Rainbow", brand: "Rolex", price: 950000000, image: "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&h=400&fit=crop", description: "Vàng hồng, đá quý cầu vồng.", badge: "sale", stock: 3, rating: 5, originalPrice: 1200000000 },
+    { id: "p3", name: "Omega Speedmaster Moonwatch", brand: "Omega", price: 210000000, image: "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?w=600&h=400&fit=crop", description: "Di sản mặt trăng.", badge: null, stock: 12, rating: 4, originalPrice: null },
+    { id: "p4", name: "Omega Seamaster 300M", brand: "Omega", price: 125000000, image: "https://images.unsplash.com/photo-1585123334904-845d60e6b2f9?w=600&h=400&fit=crop", description: "James Bond edition.", badge: null, stock: 20, rating: 4, originalPrice: null },
+    { id: "p5", name: "Patek Philippe Nautilus", brand: "Patek", price: 1800000000, image: "https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=600&h=400&fit=crop", description: "Biểu tượng thể thao.", badge: "new", stock: 2, rating: 5, originalPrice: null },
+    { id: "p6", name: "Patek Philippe Aquanaut", brand: "Patek", price: 890000000, image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600&h=400&fit=crop", description: "Cao su cao cấp.", badge: null, stock: 5, rating: 5, originalPrice: null },
+    { id: "p7", name: "Audemars Piguet Royal Oak", brand: "Audemars", price: 1450000000, image: "https://images.unsplash.com/photo-1585123334904-845d60e6b2f9?w=600&h=400&fit=crop", description: "Bát giác huyền thoại.", badge: null, stock: 4, rating: 5, originalPrice: null },
+    { id: "p8", name: "Audemars Piguet Code 11.59", brand: "Audemars", price: 720000000, image: "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?w=600&h=400&fit=crop", description: "Mặt số enamel.", badge: null, stock: 6, rating: 4, originalPrice: null },
+    { id: "p9", name: "Hào Vintage Chronograph", brand: "Hào", price: 45000000, image: "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&h=400&fit=crop", description: "Cổ điển, lên dây cót.", badge: null, stock: 10, rating: 4, originalPrice: null },
+    { id: "p10", name: "Hào Diamond Ice", brand: "Hào", price: 387000000, image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600&h=400&fit=crop", description: "Đính kim cương.", badge: null, stock: 3, rating: 5, originalPrice: null },
+    { id: "p11", name: "Rolex GMT-Master II Pepsi", brand: "Rolex", price: 520000000, image: "https://images.unsplash.com/photo-1585123334904-845d60e6b2f9?w=600&h=400&fit=crop", description: "Viền đỏ xanh.", badge: null, stock: 7, rating: 5, originalPrice: null },
+    { id: "p12", name: "Omega Constellation", brand: "Omega", price: 198000000, image: "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?w=600&h=400&fit=crop", description: "Griffes, dây vàng thép.", badge: null, stock: 9, rating: 4, originalPrice: null },
+    { id: "p13", name: "Hào Skeleton Art", brand: "Hào", price: 276000000, image: "https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=600&h=400&fit=crop", description: "Lộ máy tinh xảo.", badge: "new", stock: 8, rating: 5, originalPrice: null },
+    { id: "p14", name: "IWC Portuguese Chrono", brand: "IWC", price: 320000000, image: "https://images.unsplash.com/photo-1585123334904-845d60e6b2f9?w=600&h=400&fit=crop", description: "Bộ máy tự động.", badge: null, stock: 6, rating: 4, originalPrice: null },
+    { id: "p15", name: "Cartier Santos", brand: "Cartier", price: 280000000, image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600&h=400&fit=crop", description: "Thiết kế vuông.", badge: null, stock: 7, rating: 4, originalPrice: null },
+    { id: "p16", name: "Hublot Big Bang Unico", brand: "Hublot", price: 450000000, image: "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&h=400&fit=crop", description: "Carbon, thể thao.", badge: null, stock: 5, rating: 4, originalPrice: null },
+    { id: "p17", name: "Richard Mille RM 11-03", brand: "Richard Mille", price: 1850000000, image: "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?w=600&h=400&fit=crop", description: "Siêu xe đeo tay.", badge: null, stock: 1, rating: 5, originalPrice: null },
+    { id: "p18", name: "Jaeger-LeCoultre Reverso", brand: "Jaeger", price: 350000000, image: "https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=600&h=400&fit=crop", description: "Mặt lật biểu tượng.", badge: null, stock: 4, rating: 5, originalPrice: null },
+    { id: "p19", name: "Vacheron Constantin Classic", brand: "Vacheron", price: 650000000, image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600&h=400&fit=crop", description: "Kinh điển, thủ công.", badge: null, stock: 3, rating: 5, originalPrice: null },
+    { id: "p20", name: "Hào Emperor Tourbillon", brand: "Hào", price: 1250000000, image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600&h=400&fit=crop", description: "Tourbillon bay, vàng 18K.", badge: "new", stock: 5, rating: 5, originalPrice: null }
 ];
 
 function initData() {
@@ -75,6 +74,20 @@ function getProductById(id) {
     return getProducts().find(p => p.id === id);
 }
 
+function isAdminLoggedIn() {
+    return sessionStorage.getItem('hao_admin_logged') === 'true';
+}
+function adminLogin(password) {
+    if (password === 'admin123') {
+        sessionStorage.setItem('hao_admin_logged', 'true');
+        return true;
+    }
+    return false;
+}
+function adminLogout() {
+    sessionStorage.removeItem('hao_admin_logged');
+}
+
 window.getProducts = getProducts;
 window.saveProducts = saveProducts;
 window.getCart = getCart;
@@ -85,3 +98,6 @@ window.addToCart = addToCart;
 window.showToast = showToast;
 window.getProductById = getProductById;
 window.updateCartCount = updateCartCount;
+window.isAdminLoggedIn = isAdminLoggedIn;
+window.adminLogin = adminLogin;
+window.adminLogout = adminLogout;
