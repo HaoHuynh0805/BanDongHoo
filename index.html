@@ -32,17 +32,30 @@
 <!-- Hero Swiper -->
 <div class="swiper hero-swiper w-full h-[500px] md:h-[600px]">
     <div class="swiper-wrapper">
-        <div class="swiper-slide relative" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/1920x800/1A1A1A/C5A059?text=⌚+Hao+Emperor+Tourbillon&font=playfair'); background-size: cover; background-position: center;">
+        <div class="swiper-slide relative" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=1920&h=800&fit=crop'); background-size: cover; background-position: center;">
             <div class="flex flex-col justify-center items-center h-full text-white text-center"><h1 class="text-5xl md:text-7xl font-bold shimmer-text">Hào Emperor Tourbillon</h1><p class="text-xl mt-4">Kiệt tác chế tác thủ công</p><a href="shop.html" class="btn-gold mt-6 inline-block">Khám phá ngay</a></div>
         </div>
-        <div class="swiper-slide relative" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/1920x800/2C3E50/C5A059?text=⌚+Rolex+Daytona+Rainbow&font=playfair'); background-size: cover;">
+        <div class="swiper-slide relative" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=1920&h=800&fit=crop'); background-size: cover;">
             <div class="flex flex-col justify-center items-center h-full text-white"><h1 class="text-5xl md:text-7xl font-bold shimmer-text">Rolex Daytona Rainbow</h1><p class="text-xl mt-4">Sắc màu quyền lực</p><a href="shop.html" class="btn-gold mt-6 inline-block">Xem ngay</a></div>
         </div>
-        <div class="swiper-slide relative" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/1920x800/34568B/C5A059?text=⌚+Patek+Nautilus&font=playfair'); background-size: cover;">
+        <div class="swiper-slide relative" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1585123334904-845d60e6b2f9?w=1920&h=800&fit=crop'); background-size: cover;">
             <div class="flex flex-col justify-center items-center h-full text-white"><h1 class="text-5xl md:text-7xl font-bold shimmer-text">Patek Philippe Nautilus</h1><p class="text-xl mt-4">Biểu tượng đẳng cấp</p><a href="shop.html" class="btn-gold mt-6 inline-block">Khám phá</a></div>
         </div>
     </div>
     <div class="swiper-pagination"></div>
+</div>
+
+<!-- Countdown Sale -->
+<div class="container mx-auto px-4 mt-8">
+    <div class="countdown">
+        <h3 class="text-2xl font-serif mb-2">🔥 FLASH SALE - KẾT THÚC SAU 🔥</h3>
+        <div class="countdown-timer" id="countdownTimer">
+            <div><span id="days">00</span><br>Ngày</div>
+            <div><span id="hours">00</span><br>Giờ</div>
+            <div><span id="minutes">00</span><br>Phút</div>
+            <div><span id="seconds">00</span><br>Giây</div>
+        </div>
+    </div>
 </div>
 
 <!-- Sản phẩm nổi bật -->
@@ -55,26 +68,44 @@
 <div class="bg-black text-white py-16">
     <div class="container mx-auto px-4 text-center"><h2 class="text-3xl font-serif shimmer-text">📰 Tin tức & Sự kiện</h2><p class="mt-2">Cập nhật xu hướng đồng hồ mới nhất</p>
         <div class="grid md:grid-cols-3 gap-8 mt-10">
-            <div class="bg-white/10 p-6 rounded-2xl text-left"><i class="fas fa-newspaper text-gold text-2xl"></i><h3 class="font-bold text-xl mt-3">Triển lãm Watches & Wonders</h3><p class="text-sm mt-2">Hào Watches tham gia triển lãm lớn nhất châu Á...</p><a href="blog.html" class="text-gold text-sm mt-3 inline-block">Đọc tiếp →</a></div>
-            <div class="bg-white/10 p-6 rounded-2xl text-left"><i class="fas fa-gem text-gold text-2xl"></i><h3 class="font-bold text-xl mt-3">Bộ sưu tập mới 2025</h3><p class="text-sm mt-2">Những mẫu đồng hồ giới hạn vừa ra mắt...</p><a href="blog.html" class="text-gold text-sm mt-3 inline-block">Đọc tiếp →</a></div>
-            <div class="bg-white/10 p-6 rounded-2xl text-left"><i class="fas fa-chart-line text-gold text-2xl"></i><h3 class="font-bold text-xl mt-3">Xu hướng đồng hồ năm nay</h3><p class="text-sm mt-2">Mặt số màu xanh và dây cao su lên ngôi...</p><a href="blog.html" class="text-gold text-sm mt-3 inline-block">Đọc tiếp →</a></div>
+            <div class="bg-white/10 p-6 rounded-2xl text-left"><img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=400&h=200&fit=crop" class="rounded-xl w-full h-32 object-cover mb-3"><i class="fas fa-newspaper text-gold text-2xl"></i><h3 class="font-bold text-xl mt-3">Triển lãm Watches & Wonders</h3><p class="text-sm mt-2">Hào Watches tham gia triển lãm lớn nhất châu Á...</p><a href="blog.html" class="text-gold text-sm mt-3 inline-block">Đọc tiếp →</a></div>
+            <div class="bg-white/10 p-6 rounded-2xl text-left"><img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?w=400&h=200&fit=crop" class="rounded-xl w-full h-32 object-cover mb-3"><i class="fas fa-gem text-gold text-2xl"></i><h3 class="font-bold text-xl mt-3">Bộ sưu tập mới 2025</h3><p class="text-sm mt-2">Những mẫu đồng hồ giới hạn vừa ra mắt...</p><a href="blog.html" class="text-gold text-sm mt-3 inline-block">Đọc tiếp →</a></div>
+            <div class="bg-white/10 p-6 rounded-2xl text-left"><img src="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=400&h=200&fit=crop" class="rounded-xl w-full h-32 object-cover mb-3"><i class="fas fa-chart-line text-gold text-2xl"></i><h3 class="font-bold text-xl mt-3">Xu hướng đồng hồ năm nay</h3><p class="text-sm mt-2">Mặt số màu xanh và dây cao su lên ngôi...</p><a href="blog.html" class="text-gold text-sm mt-3 inline-block">Đọc tiếp →</a></div>
         </div>
     </div>
 </div>
 
-<!-- Footer -->
 <footer class="bg-black text-white py-10 text-center border-t border-gold/20"><p class="shimmer-text font-bold text-xl">⌚ Hào Watches</p><p class="mt-2">Bảo hành quốc tế 5 năm | Giao hàng miễn phí toàn cầu</p><p class="text-sm mt-4">© 2025 Hào Watches – Đẳng cấp thời gian</p></footer>
 
-<!-- Back to top -->
 <div id="backToTop" class="shadow-lg"><i class="fas fa-arrow-up"></i></div>
-
-<!-- Quick view modal -->
 <div id="quickViewModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><div id="quickViewBody"></div></div></div>
 
 <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 <script src="script.js"></script>
 <script>
     new Swiper('.hero-swiper', { loop: true, autoplay: { delay: 5000 }, pagination: { el: '.swiper-pagination', clickable: true } });
+
+    // Countdown timer (kết thúc sau 7 ngày)
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 7);
+    function updateCountdown() {
+        const now = new Date();
+        const diff = targetDate - now;
+        if (diff <= 0) {
+            document.getElementById('countdownTimer').innerHTML = '<div>🎉 SALE KẾT THÚC 🎉</div>';
+            return;
+        }
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (86400000)) / 3600000);
+        const minutes = Math.floor((diff % 3600000) / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+        document.getElementById('days').innerText = String(days).padStart(2,'0');
+        document.getElementById('hours').innerText = String(hours).padStart(2,'0');
+        document.getElementById('minutes').innerText = String(minutes).padStart(2,'0');
+        document.getElementById('seconds').innerText = String(seconds).padStart(2,'0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
 
     function renderFeatured() {
         const products = getProducts().slice(0,8);
