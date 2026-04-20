@@ -14,21 +14,7 @@
         if(product.badge === 'new') badgeHtml = '<span class="inline-block bg-gold text-black px-3 py-1 rounded-full text-sm font-bold mr-2">MỚI</span>';
         if(product.badge === 'sale') badgeHtml = '<span class="inline-block bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold mr-2">GIẢM GIÁ</span>';
         const ratingStars = Array(5).fill().map((_,i)=>`<i class="fa${i<product.rating?'s':'r'} fa-star text-yellow-400"></i>`).join('');
-        container.innerHTML = `
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="rounded-2xl overflow-hidden shadow-lg"><img src="${product.image}" class="w-full"></div>
-                <div>
-                    <h1 class="text-4xl font-serif font-bold">${product.name}</h1>
-                    <div class="mt-2">${badgeHtml}<span class="text-sm text-gray-500 ml-2">Thương hiệu: ${product.brand}</span></div>
-                    <div class="flex items-center mt-2">${ratingStars} <span class="ml-2 text-sm text-gray-500">(${product.rating} sao)</span></div>
-                    <div class="mt-4"><span class="price text-3xl">${product.price.toLocaleString()}₫</span>${product.originalPrice ? `<span class="old-price ml-2">${product.originalPrice.toLocaleString()}₫</span>` : ''}</div>
-                    <p class="text-gray-600 mt-4">${product.description}</p>
-                    <div class="mt-4 p-3 bg-gray-50 rounded-xl"><p class="text-sm">✅ Tình trạng: <span class="font-semibold text-green-600">Còn hàng</span></p><p class="text-sm">📦 Tồn kho: <strong>${product.stock}</strong> sản phẩm</p></div>
-                    <div class="mt-4 flex items-center gap-3"><label class="font-medium">Số lượng:</label><input type="number" id="qty" value="1" min="1" max="${product.stock}" class="border rounded-lg w-20 px-3 py-2"></div>
-                    <button onclick="addToCart(getProductById('${product.id}'), parseInt(document.getElementById('qty').value))" class="btn-gold mt-6 px-8 py-3 rounded-full">Thêm vào giỏ hàng</button>
-                </div>
-            </div>
-        `;
+        container.innerHTML = `<div class="grid md:grid-cols-2 gap-8"><div class="rounded-2xl overflow-hidden shadow-lg"><img src="${product.image}" class="w-full"></div><div><h1 class="text-4xl font-serif font-bold">${product.name}</h1><div class="mt-2">${badgeHtml}<span class="text-sm text-gray-500 ml-2">Thương hiệu: ${product.brand}</span></div><div class="flex items-center mt-2">${ratingStars} <span class="ml-2 text-sm text-gray-500">(${product.rating} sao)</span></div><div class="mt-4"><span class="price text-3xl">${product.price.toLocaleString()}₫</span>${product.originalPrice ? `<span class="old-price ml-2">${product.originalPrice.toLocaleString()}₫</span>` : ''}</div><p class="text-gray-600 mt-4">${product.description}</p><div class="mt-4 p-3 bg-gray-50 rounded-xl"><p class="text-sm">✅ Tình trạng: <span class="font-semibold text-green-600">Còn hàng</span></p><p class="text-sm">📦 Tồn kho: <strong>${product.stock}</strong> sản phẩm</p></div><div class="mt-4 flex items-center gap-3"><label class="font-medium">Số lượng:</label><input type="number" id="qty" value="1" min="1" max="${product.stock}" class="border rounded-lg w-20 px-3 py-2"></div><button onclick="addToCart(getProductById('${product.id}'), parseInt(document.getElementById('qty').value))" class="btn-gold mt-6 px-8 py-3 rounded-full">Thêm vào giỏ hàng</button></div></div>`;
     } else { container.innerHTML = '<p class="text-red-500">Không tìm thấy sản phẩm.</p>'; }
     updateCartCount();
 </script>
